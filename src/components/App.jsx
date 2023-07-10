@@ -1,28 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/ContactForm';
 import ContactsList from './ContactsList/ContactsList';
 import Filter from './Filter/Filter';
 import { addContact, deleteContact } from '../redux/contactSlice';
-import { setFilter } from 'redux/filtersSlice';
-import { getContacts, getFilter } from 'redux/selectors';
+import { setFilter } from '../redux/filtersSlice';
+import { getContacts, getFilter } from '../redux/selectors';
 
 const App = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const storedContacts = localStorage.getItem('contacts');
-    if (storedContacts) {
-      dispatch(addContact(JSON.parse(storedContacts)));
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
   const handleFormSubmit = (name, number) => {
     let existContact = contacts.find(
@@ -61,7 +50,7 @@ const App = () => {
       <ContactForm onFormSubmit={handleFormSubmit} />
       <Filter filteredContacts={handleFilterChange} />
       <h2>Contacts</h2>
-      <ContactsList contacts={[filteredContacts]} onDelete={handleDelete} />
+      <ContactsList contacts={filteredContacts} onDelete={handleDelete} />
     </>
   );
 };
