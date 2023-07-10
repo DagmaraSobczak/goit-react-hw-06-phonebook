@@ -50,7 +50,6 @@ const App = () => {
       <ContactForm onFormSubmit={handleFormSubmit} />
       <Filter filteredContacts={handleFilterChange} />
       <h2>Contacts</h2>
-
       <ContactsList contacts={filteredContacts} onDelete={handleDelete} />
     </>
   );

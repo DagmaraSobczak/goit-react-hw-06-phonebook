@@ -7,12 +7,12 @@ import { createAction } from '@reduxjs/toolkit';
 const deleteContact = createAction('contact/deleteContact');
 
 const ContactsList = ({ contacts }) => {
-  const [contactList, setContactList] = useState(contacts); // Użyj lokalnego stanu do przechowywania listy kontaktów
+  const [contactList, setContactList] = useState(contacts);
   const dispatch = useDispatch();
 
   const handleDelete = id => {
     dispatch(deleteContact(id));
-    setContactList(prevList => prevList.filter(contact => contact.id !== id)); // Aktualizuj lokalny stan po usunięciu kontaktu
+    setContactList(prevList => prevList.filter(contact => contact.id !== id));
   };
 
   return (
