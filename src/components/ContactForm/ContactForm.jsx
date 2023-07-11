@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import css from './ContactForm.module.css';
 import { useDispatch } from 'react-redux';
-import { createAction } from '@reduxjs/toolkit';
 
-const addContact = createAction('contact/addContact');
+import { addContact } from '../../redux/contactSlice';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
